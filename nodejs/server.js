@@ -112,3 +112,16 @@ server.put("/api/student/update/:id",(req,res)=>{
     });
 });
 
+
+server.delete("/api/student/delete/:id",(req,res)=>{
+
+    let sql= "DELETE FROM student WHERE id="+req.params.id +"";
+    let query= db.query(sql, function (error, result){
+        if (error){
+            console.log("error connecting to DB");
+        }else{
+            res.send({ status: true, data: result});
+        }
+
+    });
+});
