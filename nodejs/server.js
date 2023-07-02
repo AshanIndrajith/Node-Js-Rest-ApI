@@ -90,3 +90,25 @@ server.get("/api/student/:id",(req,res)=>{
     });
 });
 
+
+server.put("/api/student/update/:id",(req,res)=>{
+    let sql=
+    "UPDATE student SET stname='"+
+    req.body.stname +
+    "',course='"+
+    req.body.course +
+    "',fee='"+
+    req.body.fee +
+    "' WHERE id=" +
+    req.params.id;
+
+    let query= db.query(sql, function (error, result){
+        if (error){
+            console.log("error connecting to DB");
+        }else{
+            res.send({ status: true, data: result});
+        }
+
+    });
+});
+
